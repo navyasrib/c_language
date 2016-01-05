@@ -88,6 +88,15 @@ void find_index_should_give_1_if_the_element_is_not_present_in_array() {
 	assert(find_index(array, &x) == -1);
 };
 
+void test_for_dispose_array() {
+	Array_util array = create(4, 4);
+	int *arr1 = array.base;
+	for(int i=0; i<4; i++) {
+		arr1[i] = i+1;
+	};
+	dispose(array);
+};
+
 int main(void) {
 	test_to_create_array();
 	test_to_compare_two_arrays();
@@ -99,6 +108,7 @@ int main(void) {
 	resize_array_should_give_new_array_of_same_elements_as_reference_array();
 	find_index_should_give_the_index_of_an_element_in_array();
 	find_index_should_give_1_if_the_element_is_not_present_in_array();
+	test_for_dispose_array();
 
 	return 0;
 };
