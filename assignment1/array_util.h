@@ -13,3 +13,7 @@ Array_util resize(Array_util, int);
 int find_index(Array_util, void *);
 
 void dispose(Array_util);
+
+typedef int MatchFunc(void *, void *);
+
+void *find_first(Array_util, MatchFunc *, void *);

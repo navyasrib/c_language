@@ -46,3 +46,12 @@ int find_index(Array_util array, void *element) {
 void dispose(Array_util util) {
 	free(util.base);
 };
+
+void *find_first(Array_util array, MatchFunc *match, void *hint) {
+  	int *numbers = array.base;
+  	for (int i = 0; i < array.length; i++){
+  		if(match(hint, &numbers[i]))
+  			return &numbers[i];
+  	}
+  	return NULL;
+};
