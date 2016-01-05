@@ -55,3 +55,12 @@ void *find_first(Array_util array, MatchFunc *match, void *hint) {
   	}
   	return NULL;
 };
+
+void *find_last(Array_util array, MatchFunc *match, void *hint) {
+  	int *numbers = array.base;
+  	for (int i = array.length-1; i >= 0; i--){
+  		if(match(hint, &numbers[i]))
+  			return &numbers[i];
+  	}
+  	return NULL;
+};

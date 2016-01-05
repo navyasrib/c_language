@@ -124,6 +124,22 @@ void find_first_should_give_the_element_that_matched_with_criteria() {
 	dispose(array);
 };
 
+void find_last_should_give_the_last_element_that_matched_with_criteria() {
+	Array_util array = create(4,4);
+	int *num = (int *)array.base;
+	num[0] = 5;
+	num[1] = 24;
+	num[2] = 9;
+	num[3] = 15;
+	void *even_hint = NULL;
+	int *even_check = (int *)find_last(array, &is_even, even_hint);
+	assert(*even_check == 24);
+	int divide_hint = 3;
+	int *divide_check = (int *)find_last(array, &is_divisible, &divide_hint);
+	assert(*divide_check == 15);
+	dispose(array);
+};
+
 int main(void) {
 	test_to_create_array();
 	test_to_compare_two_arrays();
@@ -137,6 +153,7 @@ int main(void) {
 	find_index_should_give_1_if_the_element_is_not_present_in_array();
 	test_for_dispose_array();
 	find_first_should_give_the_element_that_matched_with_criteria();
-
-  return 0;
+	find_last_should_give_the_last_element_that_matched_with_criteria();
+  
+  	return 0;
 };
