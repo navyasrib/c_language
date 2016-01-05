@@ -24,7 +24,7 @@ Array_util resize(Array_util array, int length) {
 	Array_util new_array;
 	new_array.length = length;
 	new_array.type_size = array.type_size;
-	int *arr1 = (void *)array.base;
+	int *arr1 = array.base;
 	int *arr2 = (void *)realloc(array.base, length);
 	for(int i=0; i<length; i++) {
 		arr2[i] = arr1[i];
@@ -33,3 +33,13 @@ Array_util resize(Array_util array, int length) {
 	new_array.base = arr2;
 	return new_array;
 };
+
+int find_index(Array_util array, void *element) {
+	int x = * (int *)element;
+	int *base = array.base;
+	for(int i=0; i<array.length; i++) {
+		if(base[i] == x) return i;
+	};
+	return -1;
+};
+
