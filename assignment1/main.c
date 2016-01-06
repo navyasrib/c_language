@@ -105,7 +105,7 @@ int is_even(void *hint, void *item) {
 int is_divisible(void *hint, void *item) {
 	int denominator = *(int *)hint;
 	int numerator = *(int *)item;
-	return (numerator%denominator)? 0:1;
+	return (numerator % denominator)? 0:1;
 };
 
 void find_first_should_give_the_element_that_matched_with_criteria() {
@@ -114,7 +114,7 @@ void find_first_should_give_the_element_that_matched_with_criteria() {
 	num[0] = 5;
 	num[1] = 24;
 	num[2] = 9;
-	num[3] = 15;
+	num[3] = 20;
 	void *even_hint = NULL;
 	int *even_check = (int *)find_first(array, &is_even, even_hint);
 	assert(*even_check == 24);
@@ -140,6 +140,21 @@ void find_last_should_give_the_last_element_that_matched_with_criteria() {
 	dispose(array);
 };
 
+void test_for_count_of_elements_that_matches_with_criteria() {
+	Array_util array = create(4,5);
+	int *num = (int *)array.base;
+	num[0] = 5;
+	num[1] = 24;
+	num[2] = 9;
+	num[3] = 20;
+	num[4] = 100;
+	void *even_hint = NULL;
+	assert(count(array, &is_even, even_hint) == 3);
+	int divide_hint = 3;
+	assert(count(array, &is_divisible, &divide_hint) == 2);
+	dispose(array);
+};
+
 int main(void) {
 	test_to_create_array();
 	test_to_compare_two_arrays();
@@ -154,6 +169,7 @@ int main(void) {
 	test_for_dispose_array();
 	find_first_should_give_the_element_that_matched_with_criteria();
 	find_last_should_give_the_last_element_that_matched_with_criteria();
+	test_for_count_of_elements_that_matches_with_criteria();
   
   	return 0;
 };

@@ -64,3 +64,14 @@ void *find_last(Array_util array, MatchFunc *match, void *hint) {
   	}
   	return NULL;
 };
+
+
+int count(Array_util util, MatchFunc* match, void* hint) {
+	int count = 0;
+	int *numbers = util.base;
+  	for (int i = 0; i < util.length; i++){
+  		if(match(hint, &numbers[i]))
+  			count++;
+  	};
+  	return count;
+};
