@@ -21,3 +21,5 @@ void *find_first(Array_util, MatchFunc *, void *);
 void *find_last(Array_util, MatchFunc *, void *);
 
 int count(Array_util, MatchFunc *, void *);
+
+int filter(Array_util, MatchFunc *, void *, void **, int);

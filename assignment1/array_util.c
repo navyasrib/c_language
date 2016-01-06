@@ -65,7 +65,6 @@ void *find_last(Array_util array, MatchFunc *match, void *hint) {
   	return NULL;
 };
 
-
 int count(Array_util util, MatchFunc* match, void* hint) {
 	int count = 0;
 	int *numbers = util.base;
@@ -74,4 +73,16 @@ int count(Array_util util, MatchFunc* match, void* hint) {
   			count++;
   	};
   	return count;
+};
+
+int filter(Array_util array, MatchFunc *match, void *hint, void **destination, int max_items) {
+	int **result = (int **) destination;
+	int *numbers = (int *) array.base;
+  	for (int i = 0; i < array.length; i++){
+  		if(match(hint, &numbers[i])){
+  			result[max_items] = &numbers[i];
+  			max_items++;
+  		}
+  	}
+  	return max_items;
 };

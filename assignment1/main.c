@@ -155,21 +155,44 @@ void test_for_count_of_elements_that_matches_with_criteria() {
 	dispose(array);
 };
 
-int main(void) {
-	test_to_create_array();
-	test_to_compare_two_arrays();
-	test_to_compare_two_arrays_of_different_length();
-	test_to_compare_two_arrays_of_different_types();
-	test_to_compare_elements_of_two_arrays();
-	resize_array_should_give_new_array_of_given_length();
-	resize_array_should_give_new_array_of_same_elements();
-	resize_array_should_give_new_array_of_same_elements_as_reference_array();
-	find_index_should_give_the_index_of_an_element_in_array();
-	find_index_should_give_1_if_the_element_is_not_present_in_array();
-	test_for_dispose_array();
-	find_first_should_give_the_element_that_matched_with_criteria();
-	find_last_should_give_the_last_element_that_matched_with_criteria();
-	test_for_count_of_elements_that_matches_with_criteria();
-  
-  	return 0;
+void test_for_filter_should_give_the_count_of_matching_elements() {
+	Array_util array = create(4,5);
+	int *num = (int *)array.base;
+	num[0] = 5;
+	num[1] = 24;
+	num[2] = 9;
+	num[3] = 20;
+	num[4] = 100;
+	void *even_hint = NULL;
+	void *destination;
+	assert(filter(array, &is_even, &even_hint, &destination, 0) == 3);
+	int divide_hint = 5;
+	assert(filter(array, &is_divisible, &divide_hint, &destination, 0) == 3);
 };
+
+void test_for_filter_should_give_the_matching_elements() {
+	Array_util array = create(4,5);
+	int *num = (int *)array.base;
+	num[0] = 5;
+	num[1] = 24;
+	num[2] = 9;
+	num[3] = 20;
+	num[4] = 100;
+	void *even_hint = NULL;
+	void *destination1;
+	filter(array, &is_even, &even_hint, &destination1, 0);
+	int *result1 = (int *) destination1;
+	assert(24 == result1[0]);
+	assert(100 == result1[3]);
+	int divide_hint = 3;
+	void *destination2;
+	filter(array, &is_divisible, &divide_hint, &destination2, 0);
+	int *result2 = (int *) destination2;
+	assert(24 == result2[0]);
+	assert(9 == result2[1]);
+};
+
+// int main() {
+// 	test_for_filter_should_give_the_matching_elements();
+// 	return 0;
+// };
