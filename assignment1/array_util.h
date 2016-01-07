@@ -27,3 +27,7 @@ int filter(ArrayUtil, MatchFunc *, void *, void **, int);
 typedef void ConvertFunc(void *, void *, void *);
 
 void map(ArrayUtil, ArrayUtil, ConvertFunc *, void *);
+
+typedef void OperationFunc (void *, void *);
+
+void forEach(ArrayUtil, OperationFunc *, void *);

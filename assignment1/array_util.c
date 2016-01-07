@@ -97,7 +97,13 @@ void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hi
   	}
 };
 
-
+void forEach(ArrayUtil util, OperationFunc* operation, void* hint) {
+	void *numbers;
+  	for (int i = 0; i < util.length; i++){
+  		numbers = util.base+(util.type_size * i);
+  			operation(hint, numbers);
+  	}
+};
 
 
 

@@ -235,3 +235,28 @@ void test_for_map() {
 	assert(result[3] == 22);
 	assert(result[4] == 102);
 };
+
+void multiply(void* hint, void* item) {
+	int *source = (int *) item;
+	int number = *(int *) hint;
+	*source = *source * number;
+};
+
+void test_for_forEach() {
+	ArrayUtil array = create(4,5);
+	int *num = (int *) array.base;
+	num[0] = 5;
+	num[1] = 24;
+	num[2] = 9;
+	num[3] = 20;
+	num[4] = 100;
+	ArrayUtil destination = create(4,5);
+	int hint = 2;
+	forEach(array, &multiply, &hint);
+	int *result = (int *) array.base;
+	assert(result[0] == 10);
+	assert(result[1] == 48);
+	assert(result[2] == 18);
+	assert(result[3] == 40);
+	assert(result[4] == 200);
+};
