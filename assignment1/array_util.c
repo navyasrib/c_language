@@ -36,7 +36,7 @@ ArrayUtil resize(ArrayUtil array, int length) {
 
 int find_index(ArrayUtil array, void *element) {
 	for(int i=0; i<array.length; i++) {
-		if(memcmp(array.base+(array.type_size*i), element, array.type_size )) 
+		if(!memcmp(array.base+(array.type_size*i), element, array.type_size )) 
 			return i;
 	};
 	return -1;

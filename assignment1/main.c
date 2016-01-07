@@ -47,17 +47,16 @@ void test_to_compare_elements_of_two_arrays() {
 	dispose(b);
 };
 
-void resize_array_should_give_new_array_of_given_length() {
+void test_resize_array_should_give_new_array_of_given_length() {
 	ArrayUtil array = create(4, 4);
 	int *arr = array.base;
 	arr[0] = 2;
 	array.base = arr;
 	ArrayUtil new_array = resize(array, 3);
 	assert(new_array.length == 3);
-	dispose(array);
 };
 
-void resize_array_should_give_new_array_of_same_elements() {
+void test_resize_array_should_give_new_array_of_same_elements() {
 	ArrayUtil array = create(4, 4);
 	int *arr1 = array.base;
 	arr1[0] = 2;
@@ -65,10 +64,9 @@ void resize_array_should_give_new_array_of_same_elements() {
 	ArrayUtil new_array = resize(array, 3);
 	int *arr2 = new_array.base;
 	assert(arr2[0] == 2);
-	dispose(array);
 };
 
-void resize_array_should_give_new_array_of_same_elements_as_reference_array() {
+void test_resize_array_should_give_new_array_of_same_elements_as_reference_array() {
 	ArrayUtil array = create(4, 4);
 	int *arr1 = array.base;
 	arr1[0] = 2;
@@ -77,10 +75,9 @@ void resize_array_should_give_new_array_of_same_elements_as_reference_array() {
 	int *arr2 = new_array.base;
 	assert(arr2[0] == 2);
 	assert(arr2[5] == 0);
-	dispose(array);
 };
 
-void find_index_should_give_the_index_of_an_element_in_array() {
+void test_find_index_should_give_the_index_of_an_element_in_array() {
 	ArrayUtil array = create(4, 4);
 	int *arr1 = array.base;
 	for(int i=0; i<4; i++) {
@@ -91,7 +88,7 @@ void find_index_should_give_the_index_of_an_element_in_array() {
 	dispose(array);
 };
 
-void find_index_should_give_1_if_the_element_is_not_present_in_array() {
+void test_find_index_should_give_1_if_the_element_is_not_present_in_array() {
 	ArrayUtil array = create(4, 4);
 	int *arr1 = array.base;
 	for(int i=0; i<4; i++) {
@@ -122,7 +119,7 @@ int is_divisible(void *hint, void *item) {
 	return (numerator % denominator)? 0:1;
 };
 
-void find_first_should_give_the_element_that_matched_with_criteria() {
+void test_find_first_should_give_the_element_that_matched_with_criteria() {
 	ArrayUtil array = create(4,4);
 	int *num = (int *)array.base;
 	num[0] = 5;
@@ -138,7 +135,7 @@ void find_first_should_give_the_element_that_matched_with_criteria() {
 	dispose(array);
 };
 
-void find_last_should_give_the_last_element_that_matched_with_criteria() {
+void test_find_last_should_give_the_last_element_that_matched_with_criteria() {
 	ArrayUtil array = create(4,4);
 	int *num = (int *)array.base;
 	num[0] = 5;
