@@ -31,3 +31,8 @@ void map(ArrayUtil, ArrayUtil, ConvertFunc *, void *);
 typedef void OperationFunc (void *, void *);
 
 void forEach(ArrayUtil, OperationFunc *, void *);
+
+typedef void* ReducerFunc (void *, void *, void *);
+
+void* reduce(ArrayUtil, ReducerFunc *, void *, void *);
+

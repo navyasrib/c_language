@@ -250,7 +250,6 @@ void test_for_forEach() {
 	num[2] = 9;
 	num[3] = 20;
 	num[4] = 100;
-	ArrayUtil destination = create(4,5);
 	int hint = 2;
 	forEach(array, &multiply, &hint);
 	int *result = (int *) array.base;
@@ -260,3 +259,25 @@ void test_for_forEach() {
 	assert(result[3] == 40);
 	assert(result[4] == 200);
 };
+
+void* adder(void* hint, void* previousItem, void* item) {
+	int *previous = (int *) previousItem;
+	int *present = (int *) item;
+	*previous = *previous + *present;
+	return previous;
+};
+
+void test_for_reduce() {
+	ArrayUtil array = create(4,5);
+	int *num = (int *) array.base;
+	num[0] = 5;
+	num[1] = 24;
+	num[2] = 9;
+	num[3] = 20;
+	num[4] = 100;
+	void *hint = NULL;
+	int initial_value = 0;
+	int result = *(int *) reduce(array, &adder, &hint, &initial_value);
+	assert(result == 158);
+};
+

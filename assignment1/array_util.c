@@ -105,7 +105,16 @@ void forEach(ArrayUtil util, OperationFunc* operation, void* hint) {
   	}
 };
 
-
+void* reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* intialValue) {
+	void *numbers = util.base;
+  	for (int i = 0; i < util.length; i++){
+  		numbers = util.base+(util.type_size * i);
+  		intialValue = reducer(hint, intialValue, numbers);
+  	}
+  	int *result = (int *)intialValue;
+  	// printf("%d\n",*intialValue );
+  	return intialValue;
+};
 
 
 
