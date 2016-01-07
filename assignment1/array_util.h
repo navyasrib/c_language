@@ -2,24 +2,28 @@ typedef struct array_util {
 	void *base;
 	int type_size;
 	int length;
-} Array_util;
+} ArrayUtil;
 
-Array_util create(int, int);
+ArrayUtil create(int, int);
 
-int are_equal(Array_util, Array_util);
+int are_equal(ArrayUtil, ArrayUtil);
 
-Array_util resize(Array_util, int);
+ArrayUtil resize(ArrayUtil, int);
 
-int find_index(Array_util, void *);
+int find_index(ArrayUtil, void *);
 
-void dispose(Array_util);
+void dispose(ArrayUtil);
 
 typedef int MatchFunc (void *, void *);
 
-void *find_first(Array_util, MatchFunc *, void *);
+void *find_first(ArrayUtil, MatchFunc *, void *);
 
-void *find_last(Array_util, MatchFunc *, void *);
+void *find_last(ArrayUtil, MatchFunc *, void *);
 
-int count(Array_util, MatchFunc *, void *);
+int count(ArrayUtil, MatchFunc *, void *);
 
-int filter(Array_util, MatchFunc *, void *, void **, int);
+int filter(ArrayUtil, MatchFunc *, void *, void **, int);
+
+typedef void ConvertFunc(void *, void *, void *);
+
+void map(ArrayUtil, ArrayUtil, ConvertFunc *, void *);
