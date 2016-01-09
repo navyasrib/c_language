@@ -178,7 +178,7 @@ void test_for_filter_should_give_the_count_of_matching_elements() {
 	void *destination;
 	int answer1 = filter(array, &is_even, &even_hint, &destination, 2);
 	assert(answer1 == 2);
-	
+
 	int divide_hint = 3;
 	int answer2 = filter(array, &is_divisible, &divide_hint, &destination, 4);
 	assert(answer2 == 2);
@@ -190,23 +190,22 @@ void test_for_filter_should_give_the_matching_elements() {
 	int *num = (int *)array.base;
 	num[0] = 5;
 	num[1] = 24;
-	num[2] = 0;
-	num[3] = 20;
+	num[2] = 2;
+	num[3] = 2023;
 	num[4] = 100;
 	void *even_hint = NULL;
 	void *destination1;
-	filter(array, &is_even, &even_hint, &destination1, 3);
+	int answer1 = filter(array, &is_even, &even_hint, &destination1, 2);
 	int *result1 = (int *) destination1;
-	assert(24 == result1[0]);
-	assert(0 == result1[1]);
-	
+	assert(result1[0] == 24);
+	assert(result1[1] == 2);
+
 	int divide_hint = 3;
 	void *destination2;
-	filter(array, &is_divisible, &divide_hint, &destination2, 5);
+	int answer2 = filter(array, &is_divisible, &divide_hint, &destination2, 4);
 	int *result2 = (int *) destination2;
-	assert(24 == result2[0]);
-	assert(0 == result2[1]);
-	dispose(array);
+	assert(result2[0] == 24);
+
 };
 
 void add(void *hint, void *sourceItem, void *destinationItem) {

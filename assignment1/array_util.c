@@ -75,11 +75,11 @@ int count(ArrayUtil util, MatchFunc* match, void* hint) {
 };
 
 int filter(ArrayUtil array, MatchFunc *match, void *hint, void **destination, int max_items) {
-	void *numbers;
+	void *numbers = array.base;
 	int count = 0;
   	for (int i = 0; i < array.length; i++){
   		numbers = array.base+(array.type_size * i);
-  		if(match(hint,numbers) && max_items > count) {
+  		if(match(hint,numbers) && count < max_items) {
   			destination[count] = numbers;
   			count++;
   		}
@@ -112,7 +112,6 @@ void* reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* intialValue
   		intialValue = reducer(hint, intialValue, numbers);
   	}
   	int *result = (int *)intialValue;
-  	// printf("%d\n",*intialValue );
   	return intialValue;
 };
 
