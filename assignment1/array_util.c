@@ -93,7 +93,7 @@ void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hi
   	for (int i = 0; i < source.length; i++){
   		numbers = source.base+(source.type_size * i);
   		result = destination.base+(source.type_size * i);
-  			convert(hint, numbers, result);
+  		convert(hint, numbers, result);
   	}
 };
 
@@ -101,7 +101,7 @@ void forEach(ArrayUtil util, OperationFunc* operation, void* hint) {
 	void *numbers;
   	for (int i = 0; i < util.length; i++){
   		numbers = util.base+(util.type_size * i);
-  			operation(hint, numbers);
+  		operation(hint, numbers);
   	}
 };
 
