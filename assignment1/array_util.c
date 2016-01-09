@@ -79,7 +79,7 @@ int filter(ArrayUtil array, MatchFunc *match, void *hint, void **destination, in
 	int count = 0;
   	for (int i = 0; i < array.length; i++){
   		numbers = array.base+(array.type_size * i);
-  		if(match(hint,numbers)) {
+  		if(match(hint,numbers) && max_items > count) {
   			destination[count] = numbers;
   			count++;
   		}
