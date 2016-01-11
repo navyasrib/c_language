@@ -111,7 +111,6 @@ void* reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* intialValue
   		numbers = util.base+(util.type_size * i);
   		intialValue = reducer(hint, intialValue, numbers);
   	}
-  	int *result = (int *)intialValue;
   	return intialValue;
 };
 
