@@ -63,17 +63,23 @@ int indexOf(LinkedList list, void *num) {
 
 void * deleteElementAt(LinkedList *list, int index) {
 	int count = 0;
-	void *deletedItem;
+	Element *deletedItem;
 	Element *ele = list->first;
-	while(ele != NULL) {
-		count++;
-		if(count == index){
-			deletedItem = ele->value;
-			free(ele);
-		}
+	for(int i=1; i<index-1; i++) {
 		ele = ele->next;
-	};
-	return deletedItem;
+	}
+	deletedItem = ele->next;
+	ele->next = deletedItem->next;
+	free(deletedItem);
+	// while(ele != NULL) {
+	// 	count++;
+	// 	if(count == index){
+	// 		deletedItem = ele->value;
+	// 		free(ele);
+	// 	}
+	// 	ele = ele->next;
+	// };
+	return deletedItem->value;
 };
 
 int asArray(LinkedList list, void **array, int maxElements) {

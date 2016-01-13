@@ -135,8 +135,8 @@ void test_for_deleteElement() {
 	add_to_list(&list, &value);
 	add_to_list(&list, &value1);
 	add_to_list(&list, &value2);
-	int *deletedItem = (int *)deleteElementAt(&list, 2);
-	assert(*deletedItem == 6);
+	int *deletedItem = (int *)deleteElementAt(&list, 3);
+	assert(*deletedItem == 10);
 };
 
 void test_for_asArray_function() {
