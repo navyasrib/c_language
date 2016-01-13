@@ -28,7 +28,7 @@ void test_for_get_first_element() {
 	add_to_list(&list, &value);
 	add_to_list(&list, &value1);
 	add_to_list(&list, &value2);
-	
+
 	int result = *(int *)get_first_element(list);
 	assert(result == 5);
 	
@@ -137,4 +137,23 @@ void test_for_deleteElement() {
 	add_to_list(&list, &value2);
 	int *deletedItem = (int *)deleteElementAt(&list, 2);
 	assert(*deletedItem == 6);
+};
+
+void test_for_asArray_function() {
+	LinkedList list = createList();
+	int value = 5;
+	int value1 = 6;
+	int value2 = 10;
+	add_to_list(&list, &value);
+	add_to_list(&list, &value1);
+	add_to_list(&list, &value2);
+
+	void *dest = (void *)calloc(5,8);
+	int result = asArray(list, dest, 5);
+	assert(result == 3);
+	assert(**(int **)dest == 5);
+	dest+=8;
+	assert(**(int **)dest == 6);
+	dest+=8;
+	assert(**(int **)dest == 10);
 };

@@ -26,3 +26,5 @@ void * getElementAt(LinkedList, int );
 int indexOf(LinkedList, void *);
 
 void * deleteElementAt(LinkedList *, int);
+
+int asArray(LinkedList, void **, int);
