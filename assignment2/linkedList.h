@@ -28,3 +28,9 @@ int indexOf(LinkedList, void *);
 void * deleteElementAt(LinkedList *, int);
 
 int asArray(LinkedList, void **, int);
+
+typedef int MatchFunc(void*, void*);
+
+int lessThanHint(void* , void*);
+
+LinkedList filter(LinkedList, MatchFunc, void * );

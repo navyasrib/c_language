@@ -157,3 +157,36 @@ void test_for_asArray_function() {
 	dest+=8;
 	assert(**(int **)dest == 10);
 };
+
+void test_two_for_asArray_function() {
+	LinkedList list = createList();
+	int value = 5;
+	int value1 = 6;
+	int value2 = 10;
+	add_to_list(&list, &value);
+	add_to_list(&list, &value1);
+	add_to_list(&list, &value2);
+
+	void *dest = (void *)calloc(2,8);
+	int result = asArray(list, dest, 2);
+	assert(result == 2);
+	assert(**(int **)dest == 5);
+	dest+=8;
+	assert(**(int **)dest == 6);
+};
+
+void test_for_filter() {
+	LinkedList list = createList();
+	int value = 5;
+	int value1 = 6;
+	int value2 = 10;
+	add_to_list(&list, &value);
+	add_to_list(&list, &value1);
+	add_to_list(&list, &value2);
+
+	int hint = 10;
+	LinkedList resultList = filter(list, &lessThanHint, &hint);
+	assert(resultList.length == 2);
+	assert(*(int *)resultList.first->value == 5);
+	assert(*(int *)resultList.last->value == 6);
+};

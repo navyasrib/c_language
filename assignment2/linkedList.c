@@ -86,3 +86,22 @@ int asArray(LinkedList list, void **array, int maxElements) {
 	}
 	return count;
 };
+
+int lessThanHint(void* hint, void* item) {
+	return (*(int *)item < *(int *)hint)? 1:0;
+};
+
+LinkedList filter(LinkedList list, MatchFunc* match, void *hint) {
+	LinkedList resultList = createList();
+	Element *value = list.first;
+	int count = list.length;
+	while(count !=0){
+		if(match(hint, value->value))
+			add_to_list(&resultList, value->value);
+		value = value->next;
+		count--;
+	}
+	return resultList;
+};
+
+
