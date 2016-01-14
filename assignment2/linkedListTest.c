@@ -204,3 +204,16 @@ void test_for_reverse() {
 	assert(*(int *)resultList.first->value == 10);
 	assert(*(int *)resultList.last->value == 5);
 };
+
+void test_for_map() {
+	LinkedList list = createList();
+	int value = 5;
+	int value1 = 6;
+	int value2 = 10;
+	add_to_list(&list, &value);
+	add_to_list(&list, &value1);
+	add_to_list(&list, &value2);
+	int hint = 10;
+	LinkedList result = map(list, &addHint, &hint);
+	assert(*(int *)result.first->value == 15);
+};

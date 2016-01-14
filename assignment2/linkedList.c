@@ -105,15 +105,28 @@ LinkedList filter(LinkedList list, MatchFunc* match, void *hint) {
 LinkedList reverse(LinkedList list) {
 	void *temp = calloc(list.length,8);
 	void **array = temp;
-	Element *value = list.first;
 	LinkedList resultList = createList();
-	for(int i=0; i<list.length; i++){
-		array[i] = value->value;
-		value = value->next;
-	}
-	for(int i=list.length-1; i>=0; i--) {
+	asArray(list, array, list.length);
+	for(int i=list.length-1; i>=0; i--) 
 		add_to_list(&resultList, (int *)array[i]);
-	}
+	free(temp);
 	return resultList;
 };
 
+void addHint(void* hint, void* sourceItem, void* destinationItem) {
+	*(int *)destinationItem = *(int *)sourceItem + *(int *)hint;
+};
+
+LinkedList map(LinkedList list, ConvertFunc *func, void *hint) {
+	LinkedList resultList = createList();
+	void *temp = calloc(list.length, 8);
+	void **allValues = temp;
+	Element *value = list.first;
+	for(int i=0; i<list.length; i++) {
+		func(hint, value->value, &allValues[i]);
+		add_to_list(&resultList, temp);
+		value = value->next;
+		temp+=8;
+	}
+	return resultList;
+};

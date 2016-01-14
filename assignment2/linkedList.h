@@ -36,3 +36,9 @@ int lessThanHint(void* , void*);
 LinkedList filter(LinkedList, MatchFunc, void * );
 
 LinkedList reverse(LinkedList);
+
+typedef void ConvertFunc(void*, void*, void*);
+
+void addHint(void*, void*, void*);
+
+LinkedList map(LinkedList, ConvertFunc *, void * );
