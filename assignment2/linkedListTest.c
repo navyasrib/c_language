@@ -217,3 +217,18 @@ void test_for_map() {
 	LinkedList result = map(list, &addHint, &hint);
 	assert(*(int *)result.first->value == 15);
 };
+
+void test_for_reduce() {
+	LinkedList list = createList();
+	int value = 5;
+	int value1 = 6;
+	int value2 = 10;
+	add_to_list(&list, &value);
+	add_to_list(&list, &value1);
+	add_to_list(&list, &value2);
+	void *hint = NULL;
+	int initialValue = 10;
+
+	LinkedList result = reduce(list, &add, hint, &initialValue);
+	assert(*(int *)result.first->value == 31);
+};

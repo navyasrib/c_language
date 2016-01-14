@@ -130,3 +130,21 @@ LinkedList map(LinkedList list, ConvertFunc *func, void *hint) {
 	}
 	return resultList;
 };
+
+void* add(void* hint, void* previousItem, void* item) {
+	int *previous = (int *) previousItem;
+	*previous = *previous + *(int *) item;
+	return previous;
+};
+
+LinkedList reduce(LinkedList list, Reducer *reducer, void *hint, void *initialValue) {
+	LinkedList result = createList();
+	Element *ele = list.first;
+  	for (int i = 0; i < list.length; i++){
+  		initialValue = reducer(hint, initialValue, ele->value);
+  		ele = ele->next;
+  	}
+  	add_to_list(&result, initialValue);
+  	return result;
+};
+

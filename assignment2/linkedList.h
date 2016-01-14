@@ -42,3 +42,9 @@ typedef void ConvertFunc(void*, void*, void*);
 void addHint(void*, void*, void*);
 
 LinkedList map(LinkedList, ConvertFunc *, void * );
+
+typedef void *Reducer(void*, void*, void*);
+
+void* add(void*, void*, void*);
+
+LinkedList reduce(LinkedList, Reducer, void *, void *);
