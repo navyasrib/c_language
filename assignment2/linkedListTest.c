@@ -190,3 +190,17 @@ void test_for_filter() {
 	assert(*(int *)resultList.first->value == 5);
 	assert(*(int *)resultList.last->value == 6);
 };
+
+void test_for_reverse() {
+	LinkedList list = createList();
+	int value = 5;
+	int value1 = 6;
+	int value2 = 10;
+	add_to_list(&list, &value);
+	add_to_list(&list, &value1);
+	add_to_list(&list, &value2);
+
+	LinkedList resultList = reverse(list);
+	assert(*(int *)resultList.first->value == 10);
+	assert(*(int *)resultList.last->value == 5);
+};

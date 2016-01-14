@@ -34,3 +34,5 @@ typedef int MatchFunc(void*, void*);
 int lessThanHint(void* , void*);
 
 LinkedList filter(LinkedList, MatchFunc, void * );
+
+LinkedList reverse(LinkedList);

@@ -71,14 +71,6 @@ void * deleteElementAt(LinkedList *list, int index) {
 	deletedItem = ele->next;
 	ele->next = deletedItem->next;
 	free(deletedItem);
-	// while(ele != NULL) {
-	// 	count++;
-	// 	if(count == index){
-	// 		deletedItem = ele->value;
-	// 		free(ele);
-	// 	}
-	// 	ele = ele->next;
-	// };
 	return deletedItem->value;
 };
 
@@ -110,4 +102,18 @@ LinkedList filter(LinkedList list, MatchFunc* match, void *hint) {
 	return resultList;
 };
 
+LinkedList reverse(LinkedList list) {
+	void *temp = calloc(list.length,8);
+	void **array = temp;
+	Element *value = list.first;
+	LinkedList resultList = createList();
+	for(int i=0; i<list.length; i++){
+		array[i] = value->value;
+		value = value->next;
+	}
+	for(int i=list.length-1; i>=0; i--) {
+		add_to_list(&resultList, (int *)array[i]);
+	}
+	return resultList;
+};
 
