@@ -33,6 +33,8 @@ typedef int MatchFunc(void*, void*);
 
 int lessThanHint(void* , void*);
 
+void increment(void *);
+
 LinkedList filter(LinkedList, MatchFunc, void * );
 
 LinkedList reverse(LinkedList);

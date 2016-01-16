@@ -10,7 +10,7 @@ void test_for_create_list() {
 	assert(list.last == NULL);
 };
 
-void test_for_adding_to_linkedList() {
+void test_for_adding_to_linkedList_integers() {
 	LinkedList list = createList();
 	int value = 5;
 	int value1 = 8;
@@ -20,7 +20,17 @@ void test_for_adding_to_linkedList() {
 	assert(*(int *)list.last->value == 8);
 };
 
-void test_for_get_first_element() {
+void test_for_adding_to_linkedList_characters() {
+	LinkedList list = createList();
+	char value = 'a';
+	char value1 = 'b';
+	assert(add_to_list(&list, &value) == 1);
+	assert(add_to_list(&list, &value1) == 2);
+	assert(*(char *)list.first->value == 'a');
+	assert(*(char *)list.last->value == 'b');
+};
+
+void test_for_get_first_element_integer() {
 	LinkedList list = createList();
 	int value = 5;
 	int value1 = 6;
@@ -28,10 +38,11 @@ void test_for_get_first_element() {
 	add_to_list(&list, &value);
 	add_to_list(&list, &value1);
 	add_to_list(&list, &value2);
-
 	int result = *(int *)get_first_element(list);
 	assert(result == 5);
-	
+};
+
+void test_for_get_first_element_character() {
 	LinkedList list1 = createList();
 	char char0 = 'q';
 	char char1 = 'w';
@@ -43,7 +54,7 @@ void test_for_get_first_element() {
 	assert(result1 == 'q');
 };
 
-void test_for_get_last_element() {
+void test_for_get_last_element_integer() {
 	LinkedList list = createList();
 	int value = 5;
 	int value1 = 6;
@@ -53,7 +64,9 @@ void test_for_get_last_element() {
 	add_to_list(&list, &value2);
 	int result = *(int *)get_last_element(list);
 	assert(result == 10);
-	
+};
+
+void test_for_get_last_element_character() {
 	LinkedList list1 = createList();
 	char char0 = 'q';
 	char char1 = 'w';
@@ -65,11 +78,7 @@ void test_for_get_last_element() {
 	assert(result1 == 'r');
 };
 
-void increment(void *value){
-	*(int *)value += 1;
-};
-
-void test_for_forEach() {
+void test_for_forEach_with_integer() {
 	LinkedList list = createList();
 	int value = 5;
 	int value1 = 6;
@@ -80,7 +89,9 @@ void test_for_forEach() {
 	forEach(list,&increment);
 	assert(*(int *)list.first->value == 6);
 	assert(*(int *)list.last->value == 11);
-	
+};
+
+void test_for_forEach_with_character() {
 	LinkedList list1 = createList();
 	char char0 = 'q';
 	char char1 = 'w';
@@ -93,7 +104,7 @@ void test_for_forEach() {
 	assert(*(char *)list1.last->value == 's');
 };
 
-void test_for_get_element() {
+void test_for_get_element_integer() {
 	LinkedList list = createList();
 	int value = 5;
 	int value1 = 6;
@@ -111,7 +122,19 @@ void test_for_get_element() {
 	assert(result3 == NULL);
 };
 
-void test_for_indexOf() {
+void test_for_get_element_character() {
+	LinkedList list1 = createList();
+	char char0 = 'q';
+	char char1 = 'w';
+	char char2 = 'r';
+	add_to_list(&list1, &char0);
+	add_to_list(&list1, &char1);
+	add_to_list(&list1, &char2);
+	char *charResult = (char *) getElementAt(list1, 2);
+	assert(*charResult == 119);
+};
+
+void test_for_indexOf_integer() {
 	LinkedList list = createList();
 	int value = 5;
 	int value1 = 6;

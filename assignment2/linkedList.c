@@ -29,6 +29,10 @@ void *get_last_element(LinkedList list) {
 	return list.last->value;
 };
 
+void increment(void *value){
+	*(int *)value += 1;
+};
+
 void forEach(LinkedList list, ElementProcessor *func) {
 	Element *value = list.first;
 	while(value != NULL) {
@@ -147,4 +151,3 @@ LinkedList reduce(LinkedList list, Reducer *reducer, void *hint, void *initialVa
   	add_to_list(&result, initialValue);
   	return result;
 };
-
